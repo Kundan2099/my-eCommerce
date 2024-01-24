@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Hash;
-use Illuminate\Support\Facades\Validator;
-
 class AuthController extends Controller
 {
     public function login_admin() {
-        
+           // Not logout admin and not change url
         if (!empty(Auth::check()) && Auth::user()->is_admin == 1) {
             return redirect('admin/dashboard');
+            
         }
         return view('admin.auth.login');
     }
@@ -32,6 +31,6 @@ class AuthController extends Controller
 
     public function logout_admin() {
         Auth::logout();
-        return redirect()->route('admin.login');
+        return redirect('admin');
     }
 }
