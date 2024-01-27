@@ -9,7 +9,7 @@
                         <h1>Add New Admin</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right">
-                        <a href="{{ route('admin.insert') }}" class="btn btn-primary btn-sm">Back</a>
+                        <a href="{{ route('admin.list') }}" class="btn btn-primary btn-sm">Back</a>
                     </div>
                 </div>
             </div>
@@ -23,19 +23,25 @@
                                 {{ csrf_field() }}
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label>Name </label>
-                                        <input type="name" class="form-control" name="name" placeholder="Enter Name" required>
+                                        <label>Name <span style="color: red">*</span></label>
+                                        <input type="name" class="form-control" name="name" value="{{ old('name')}}" placeholder="Enter Name" required>
+                                        @error('name')
+                                            <span class="text text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>Email address</label>
-                                        <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+                                        <label>Email address <span style="color: red">*</span></label>
+                                        <input type="email" class="form-control" name="email" value="{{ old('email')}}"  placeholder="Enter email" required>
+                                        @error('email')
+                                            <span class="text text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>Password</label>
+                                        <label>Password <span style="color: red">*</span></label>
                                         <input type="password" class="form-control" name="password" placeholder="Password" required>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label>Status</label>
+                                        <label>Status <span style="color: red">*</span></label>
                                         <select class="form-control" name="status">
                                             <option value="0">Active</option>
                                             <option value="1">Inactive</option>

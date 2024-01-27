@@ -52,7 +52,6 @@ class User extends Authenticatable
         {
             return User::select('users.*')
             ->where('is_admin', '=', 1)
-            ->where('is_delete', '=', 0)
             ->orderby('id', 'desc')
             ->get();
         }

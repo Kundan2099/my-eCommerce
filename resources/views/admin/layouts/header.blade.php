@@ -74,7 +74,8 @@
                             <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
                         </div>
                     </div>
-]                </a>
+                    ]
+                </a>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
             </div>
@@ -114,14 +115,22 @@
     </a>
 
     <div class="sidebar">
-
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
+                    alt="User Image">
+            </div>
+            <div class="info">
+                <a class="d-block"> {{ Auth::user()->name }} </a>
+            </div>
+        </div>
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
 
                 <li class="nav-item">
-                    <a href="{{ url('admin/dashboard') }}" class="nav-link @if ( Request::segment(2) == 'dashboard') 
-                    active @endif">
+                    <a href="{{ url('admin/dashboard') }}"
+                        class="nav-link @if (Request::segment(2) == 'dashboard') active @endif">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -129,8 +138,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('admin/admin/list') }}" class="nav-link @if ( Request::segment(2) == 'admin')
-                    active @endif">
+                    <a href="{{ url('admin/admin/list') }}"
+                        class="nav-link @if (Request::segment(2) == 'admin') active @endif">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Admin
@@ -138,9 +147,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('admin/admin/list') }}" class="nav-link @if ( Request::segment(2) == 'admin')
-                     @endif">
-                        <i class="nav-icon fas fa-user"></i>
+                    <a href="{{ url('admin/category/list') }}"
+                        class="nav-link @if (Request::segment(2) == 'category') active @endif">
+                        <i class="nav-icon fas fa-list-alt"></i>
+                        <p>
+                            Category
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('admin/admin/list') }}"
+                        class="nav-link @if (Request::segment(2) == 'admin')  @endif">
+                        <i class="nav-icon fas fa-solid fa-box"></i>
                         <p>
                             Product
                         </p>
@@ -148,7 +166,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ url('admin') }}" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>
                             Logout
                         </p>

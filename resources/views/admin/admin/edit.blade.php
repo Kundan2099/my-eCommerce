@@ -25,12 +25,12 @@
                                     <div class="form-group">
                                         <label>Name </label>
                                         <input type="name" class="form-control" name="name"
-                                            value="{{ $getRecord->name }}" placeholder="Enter Name" required>
+                                        value="{{ old('name', $getRecord->name)}}" placeholder="Enter Name" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Email address</label>
                                         <input type="email" class="form-control" name="email"
-                                            value="{{ $getRecord->email }}" placeholder="Enter email" required>
+                                        value="{{ old('email', $getRecord->email)}}" placeholder="Enter email" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>
