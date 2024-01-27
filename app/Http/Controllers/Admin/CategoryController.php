@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Validator;
 class CategoryController extends Controller
 {
     public function list() {
-        $getCategory = Category::all();
+        $getRecord = Category::all();
         $data['header_title'] = "Category";
-        return view('admin.category.list', $data, ['getCategory' => $getCategory], $data);
+        return view('admin.category.list', ['getRecord' => $getRecord ], $data);
     }
 
     public function add() {

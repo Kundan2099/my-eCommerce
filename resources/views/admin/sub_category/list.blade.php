@@ -9,7 +9,7 @@
                         <h1>Category List</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right">
-                        <a href="{{ route('admin.category.add') }}" class="btn btn-primary btn-sm">Add New Category</a>
+                        <a href="{{ route('admin.sub_category.add') }}" class="btn btn-primary btn-sm">Add New Category</a>
                     </div>
                 </div>
                 @if (session('success'))
@@ -32,6 +32,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>Category Name </th>
                                             <th>Name</th>
                                             <th>Slug</th>
                                             <th>Meta Title</th>
@@ -47,6 +48,7 @@
                                         @foreach ($getRecord as $value)
                                             <tr>
                                                 <td> {{ $value->id }} </td>
+                                                <td> {{ \App\Models\Category::find($value->category_id)?->name }} </td>
                                                 <td> {{ $value->name }} </td>
                                                 <td> {{ $value->slug }} </td>
                                                 <td> {{ $value->meta_title }} </td>
@@ -65,9 +67,9 @@
                                                         </button>
                                                         <div class="dropdown-menu">
                                                             <a class="dropdown-item"
-                                                                href="{{ route('admin.category.edit', ['id' => $value->id]) }}">Edit</a>
+                                                                href="{{ route('admin.sub_category.edit', ['id' => $value->id]) }}">Edit</a>
                                                             <a class="dropdown-item text-red"
-                                                                href="{{ route('admin.category.delete', ['id' => $value->id]) }}">Delete</a>
+                                                                href="{{ route('admin.sub_category.delete', ['id' => $value->id]) }}">Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>
