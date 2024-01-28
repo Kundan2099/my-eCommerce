@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -40,7 +42,6 @@ Route::group(['middleware' => 'admin'], function() {
     Route::post('admin/admin/edit/{id}', [AdminController::class, 'update'])->name('admin.update');
     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
 
-
     Route::get('admin/category/list', [CategoryController::class, 'list'])->name('admin.category.list');
     Route::get('admin/category/add', [CategoryController::class, 'add'])->name('admin.category.add');
     Route::post('admin/category/add', [CategoryController::class, 'insert'])->name('admin.category.insert');
@@ -48,12 +49,24 @@ Route::group(['middleware' => 'admin'], function() {
     Route::post('admin/category/edit/{id}', [CategoryController::class, 'update'])->name('admin.category.update');
     Route::get('admin/category/delete/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
 
-
     Route::get('admin/sub_category/list', [SubCategoryController::class, 'list'])->name('admin.sub_category.list');
     Route::get('admin/sub_category/add', [SubCategoryController::class, 'add'])->name('admin.sub_category.add');
     Route::post('admin/sub_category/add', [SubCategoryController::class, 'insert'])->name('admin.sub_category.insert');
     Route::get('admin/sub_category/edit/{id}', [SubCategoryController::class, 'edit'])->name('admin.sub_category.edit');
     Route::post('admin/sub_category/edit/{id}', [SubCategoryController::class, 'update'])->name('admin.sub_category.update');
     Route::get('admin/sub_category/delete/{id}', [SubCategoryController::class, 'delete'])->name('admin.sub_category.delete');
+
+    Route::get('admin/product/list', [ProductController::class, 'list'])->name('admin.product.list');
+    Route::get('admin/product/add', [ProductController::class, 'add'])->name('admin.product.add');
+    Route::post('admin/product/add', [ProductController::class, 'insert'])->name('admin.product.insert');
+    Route::get('admin/product/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
+
+
 });
 
+Route::get('blog/list', [BlogController::class, 'list'])->name('blog.list');
+Route::get('blog/add', [BlogController::class, 'add'])->name('blog.add');
+Route::post('blog/add', [BlogController::class, 'insert'])->name('blog.insert');
+Route::get('blog/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
+Route::post('blog/edit/{id}', [BlogController::class, 'update'])->name('blog.update');
+Route::get('blog/delete/{id}', [BlogController::class, 'delete'])->name('blog.delete');
