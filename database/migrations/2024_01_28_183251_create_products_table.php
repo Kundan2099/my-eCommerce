@@ -12,19 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
+            $table->increments('id');
+            $table->string('title')->nullable();
             $table->string('slug')->nullable();
             $table->integer('category_id')->nullable();
+            $table->integer('sub_category_id')->nullable();
             $table->integer('brand_id')->nullable();
             $table->decimal('old_price')->default(0);
             $table->decimal('price')->default(0);
             $table->text('short_description')->nullable();
             $table->longText('description')->nullable();
             $table->text('additional_information')->nullable();
-            $table->text('shiping_&_return')->nullable();
-            $table->boolean('status')->nullable(false);
-            $table->string('created_by')->nullable();
+            $table->text('shiping_&_returns')->nullable();
+            $table->boolean('status')->default(false);
+            $table->integer('created_by')->nullable();
             $table->timestamps();
         });
     }

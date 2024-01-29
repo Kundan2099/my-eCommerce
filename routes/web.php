@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\AuthController;
@@ -56,17 +57,20 @@ Route::group(['middleware' => 'admin'], function() {
     Route::post('admin/sub_category/edit/{id}', [SubCategoryController::class, 'update'])->name('admin.sub_category.update');
     Route::get('admin/sub_category/delete/{id}', [SubCategoryController::class, 'delete'])->name('admin.sub_category.delete');
 
+    Route::get('admin/brand/list', [BrandController::class, 'list'])->name('admin.brand.list');
+    Route::get('admin/brand/add', [BrandController::class, 'add'])->name('admin.brand.add');
+    Route::post('admin/brand/add', [BrandController::class, 'insert'])->name('admin.brand.insert');
+    Route::get('admin/brand/edit/{id}', [BrandController::class, 'edit'])->name('admin.brand.edit');
+    Route::post('admin/brand/edit/{id}', [BrandController::class, 'update'])->name('admin.brand.update');
+    Route::get('admin/brand/delete/{id}', [BrandController::class, 'delete'])->name('admin.brand.delete');
+
     Route::get('admin/product/list', [ProductController::class, 'list'])->name('admin.product.list');
     Route::get('admin/product/add', [ProductController::class, 'add'])->name('admin.product.add');
     Route::post('admin/product/add', [ProductController::class, 'insert'])->name('admin.product.insert');
     Route::get('admin/product/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
 
 
+    
+
 });
 
-Route::get('blog/list', [BlogController::class, 'list'])->name('blog.list');
-Route::get('blog/add', [BlogController::class, 'add'])->name('blog.add');
-Route::post('blog/add', [BlogController::class, 'insert'])->name('blog.insert');
-Route::get('blog/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
-Route::post('blog/edit/{id}', [BlogController::class, 'update'])->name('blog.update');
-Route::get('blog/delete/{id}', [BlogController::class, 'delete'])->name('blog.delete');
