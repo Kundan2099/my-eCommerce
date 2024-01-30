@@ -6,10 +6,10 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Brand List</h1>
+                        <h1>Color List</h1>
                     </div>
                     <div class="col-sm-6" style="text-align: right">
-                        <a href="{{ route('admin.brand.add') }}" class="btn btn-primary btn-sm">Add New Category</a>
+                        <a href="{{ route('admin.color.add') }}" class="btn btn-primary btn-sm">Add New Color</a>
                     </div>
                 </div>
                 @if (session('success'))
@@ -25,18 +25,15 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Category List</h3>
+                                <h3 class="card-title">Color List</h3>
                             </div>
                             <div class="card-body p-0">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Brand Name</th>
-                                            <th>Slug</th>
-                                            <th>Meta Title</th>
-                                            <th>Meta Description</th>
-                                            <th>Meta Keyword</th>
+                                            <th>Color Name</th>
+                                            <th>Color Code</th>
                                             <th>Created By</th>
                                             <th>Status</th>
                                             <th>Created Date</th>
@@ -48,10 +45,7 @@
                                             <tr>
                                                 <td> {{ $value->id }} </td>
                                                 <td> {{ $value->name }} </td>
-                                                <td> {{ $value->slug }} </td>
-                                                <td> {{ $value->meta_title }} </td>
-                                                <td> {{ $value->meta_description }} </td>
-                                                <td> {{ $value->meta_keyword }} </td>
+                                                <td> {{ $value->code }} </td>
                                                 <td> {{ $value->created_by }} </td>
                                                 <td> {{ $value->status == 0 ? 'Active' : 'Inactive' }} </td>
                                                 <td> {{ date('d-m-y', strtotime($value->created_at)) }} </td>
@@ -65,9 +59,9 @@
                                                         </button>
                                                         <div class="dropdown-menu">
                                                             <a class="dropdown-item"
-                                                                href="{{ route('admin.brand.edit', ['id' => $value->id]) }}">Edit</a>
+                                                                href="{{ route('admin.color.edit', ['id' => $value->id]) }}">Edit</a>
                                                             <a class="dropdown-item text-red"
-                                                                href="{{ route('admin.brand.delete', ['id' => $value->id]) }}">Delete</a>
+                                                                href="{{ route('admin.color.delete', ['id' => $value->id]) }}">Delete</a>
                                                         </div>
                                                     </div>
                                                 </td>

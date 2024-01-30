@@ -49,9 +49,9 @@ class BrandController extends Controller
 
 
     public function edit($id) {
-        $getBrand = Brand::find($id);
+        $brand = Brand::find($id);
         $data['header_title'] = "Edit Brand";
-        return view('admin.brand.edit', ['getBrand' => $getBrand], $data);
+        return view('admin.brand.edit', ['brand' => $brand], $data);
     }
 
 

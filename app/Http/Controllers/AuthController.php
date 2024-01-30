@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function login_admin() {
            // Not logout admin and not change url
-        if (!empty(Auth::check()) && Auth::user()->is_admin == 1) {
+        if (!empty(Auth::check()) && Auth::user()->is_admin == 0) {
             return redirect('admin/dashboard');
             
         }

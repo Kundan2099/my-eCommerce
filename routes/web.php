@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -63,6 +64,13 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('admin/brand/edit/{id}', [BrandController::class, 'edit'])->name('admin.brand.edit');
     Route::post('admin/brand/edit/{id}', [BrandController::class, 'update'])->name('admin.brand.update');
     Route::get('admin/brand/delete/{id}', [BrandController::class, 'delete'])->name('admin.brand.delete');
+
+    Route::get('admin/color/list', [ColorController::class, 'list'])->name('admin.color.list');
+    Route::get('admin/color/add', [ColorController::class, 'add'])->name('admin.color.add');
+    Route::post('admin/color/add', [ColorController::class, 'insert'])->name('admin.color.insert');
+    Route::get('admin/color/edit/{id}', [ColorController::class, 'edit'])->name('admin.color.edit');
+    Route::post('admin/color/edit/{id}', [ColorController::class, 'update'])->name('admin.color.update');
+    Route::get('admin/color/delete/{id}', [ColorController::class, 'delete'])->name('admin.color.delete');
 
     Route::get('admin/product/list', [ProductController::class, 'list'])->name('admin.product.list');
     Route::get('admin/product/add', [ProductController::class, 'add'])->name('admin.product.add');

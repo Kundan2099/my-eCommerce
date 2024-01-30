@@ -35,6 +35,7 @@ class ProductController extends Controller
         // if ($validation->fails()) {
         //     return redirect()->back()->withErrors($validation)->withInput();
         // }
+        
         $title = trim($request->title);
 
         $product = new Product;

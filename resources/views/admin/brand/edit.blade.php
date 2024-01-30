@@ -26,7 +26,7 @@
                                     <div class="form-group">
                                         <label>Brand Name <span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="name"
-                                            value="{{ old('name', $getBrand->name) }}" placeholder="Brand Name" required>
+                                            value="{{ old('name', $brand->name) }}" placeholder="Brand Name" required>
                                         @error('name')
                                             <span class="text text-danger">{{ $message }}</span>
                                         @enderror
@@ -34,7 +34,7 @@
                                     <div class="form-group">
                                         <label>Slug <span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="slug"
-                                            value="{{ old('slug', $getBrand->slug) }}" placeholder="Slug Ex. URL " required>
+                                            value="{{ old('slug', $brand->slug) }}" placeholder="Slug Ex. URL " required>
                                         @error('slug')
                                             <span class="text text-danger">{{ $message }}</span>
                                         @enderror
@@ -51,19 +51,19 @@
                                         <div class="form-group">
                                             <label>Meta Title <span style="color: red">*</span></label>
                                             <input type="text" class="form-control" name="meta_title"
-                                                value="{{ old('meta_title', $getBrand->meta_title) }}" placeholder="Meta Title " required>
+                                                value="{{ old('meta_title', $brand->meta_title) }}" placeholder="Meta Title " required>
                                             @error('meta_title')
                                                 <span class="text text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label>Meta Description </label>
-                                            <textarea type="text" class="form-control" name="meta_description" placeholder="Meta Description ">{{ old('meta_description', $getBrand->meta_description) }}</textarea>
+                                            <textarea type="text" class="form-control" name="meta_description" placeholder="Meta Description ">{{ old('meta_description', $brand->meta_description) }}</textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Meta Keywords </label>
                                             <input type="text" class="form-control" name="meta_keyword"
-                                                value="{{ old('meta_keyword', $getBrand->meta_keyword) }}" placeholder="Meta Keywords ">
+                                                value="{{ old('meta_keyword', $brand->meta_keyword) }}" placeholder="Meta Keywords ">
                                         </div>
                                 </div>
                                 <div class="card-footer">
