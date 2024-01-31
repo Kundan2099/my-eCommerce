@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -15,8 +16,9 @@ class ProductController extends Controller
 {
     public function list()
     {
+        $getRecord = Product::all();
         $data['header_title'] = "Product";
-        return view('admin.product.list', $data);
+        return view('admin.product.list', ['getRecord' => $getRecord], $data);
     }
 
     public function add()
@@ -28,49 +30,76 @@ class ProductController extends Controller
     public function insert(Request $request)
     {
 
-        // $validation = Validator::make($request->all(), [
-        //     'slug' => ['required', 'string', 'unique:products,slug']
-        // ]);
-
-        // if ($validation->fails()) {
-        //     return redirect()->back()->withErrors($validation)->withInput();
-        // }
-        
-        $title = trim($request->title);
-
-        $product = new Product;
-        $product->title =$title;
-        $product->created_by = Auth::user()->id;
-        $product->save();
-
-        $slug = Str::slug($request->input('title'), "-");
-
-       
-        if (empty(Product::check()->slug)) {
-
-            $product->slug = $request->input('slug');
+        try {
+            $product = new Product;
+            $product->title = $request->input('title');
+            $product->created_by = Auth::user()->name;
             $product->save();
-        } else {
 
-            $new_slug = $slug . '-' . $product->id;
-            $product->slug = $new_slug;
+            $slug = Str::slug($request->input('title'), "-");
+
+            $checkSlug = Product::find($slug);
+            if (empty($checkSlug)) {
+                $product->slug = $slug;
+                $product->save();
+            }
+            $new_sulg = $slug . '-' . $product->id;
+            $product->slug = $new_sulg;
             $product->save();
+
+            return redirect('admin/product/edit/' . $product->id);
+        } catch (Exception $exception) {
+            return redirect()->back()->with('message', [
+                'status' => 'error',
+                'title' => 'An error occcured',
+                'description' => $exception->getMessage()
+            ]);
         }
-
-        return redirect('admin/product/edit.' . $product->id);
     }
 
-    // public function update(Request $request, $id)
-    // {
 
-    //     $product = Product::find($id);
+    public function edit($product_id)
+    {
+        try {
+            $product = Product::find($product_id);
+            if (!empty($product)) {
+                $data['product'] = $product;
+                $data['header_title'] = "Edit Product";
+                return view('admin.product.edit', $data);
+            }
+        } catch (Exception $exception) {
+            return redirect()->back()->with('message', [
+                'status' => 'error',
+                'title' => 'An error occcured',
+                'description' => $exception->getMessage()
+            ]);
+        }
+    }
 
-    //     $validation = Validator::make($request->all(), [
-    //         'slug' => ['required', 'string', Rule::unique('products')->ignore($product->slug, 'slug')]
-    //     ]);
 
-    //     if ($validation->fails()) {
-    //         return redirect()->back()->withErrors($validation)->withInput();
-    //     }
-    // }
+    public function update(Request $request, $id)
+    {
+        $category = Category::find($id);
+        $category->name = $request->input('name');
+        $category->slug = $request->input('slug');
+        $category->status = $request->input('status');
+        $category->meta_title = $request->input('meta_title');
+        $category->meta_description = $request->input('meta_description');
+        $category->meta_keyword = $request->input('meta_keyword');
+        $category->created_by = Auth::user()->name;
+        $category->update();
+
+        return redirect()->route('admin.product.list')->with('success', "Product Successfully Update");
+    }
+
+    public function delete($id)
+    {
+
+        $getCategory = Product::find($id);
+        $result = $getCategory->delete();
+
+        if ($result) {
+            return redirect()->route('admin.product.list')->with('message', 'Product Successfully Delete');
+        }
+    }
 }

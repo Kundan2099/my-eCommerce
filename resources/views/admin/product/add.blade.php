@@ -28,7 +28,7 @@
                                         <label>Title <span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="title"
                                             value="{{ old('title') }}" placeholder="Title" required>
-                                        @error('name')
+                                        @error('title')
                                             <span class="text text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>

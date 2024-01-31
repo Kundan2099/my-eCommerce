@@ -32,17 +32,39 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Name</th>
-                                            <th>Slug</th>
-                                            <th>Meta Title</th>
-                                            <th>Meta Description</th>
-                                            <th>Meta Keyword</th>
+                                            <th>Product Name</th>
                                             <th>Created By</th>
                                             <th>Status</th>
                                             <th>Created Date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                        @foreach ($getRecord as $value)
+                                            <tr>
+                                                <td> {{ $value->id }} </td>
+                                                <td> {{ $value->title }} </td>
+                                                <td> {{ $value->created_by }} </td>
+                                                <td> {{ $value->status == 0 ? 'Active' : 'Inactive' }} </td>
+                                                <td> {{ date('d-m-y', strtotime($value->created_at)) }} </td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-primary dropdown-toggle"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            Action
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('admin.product.edit', ['id' => $value->id]) }}">Edit</a>
+                                                            <a class="dropdown-item text-red"
+                                                                href="{{ route('admin.product.delete', ['id' => $value->id]) }}">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

@@ -76,9 +76,11 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('admin/product/add', [ProductController::class, 'add'])->name('admin.product.add');
     Route::post('admin/product/add', [ProductController::class, 'insert'])->name('admin.product.insert');
     Route::get('admin/product/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
+    Route::post('admin/product/edit/{id}', [BrandController::class, 'update'])->name('admin.product.update');    
+    Route::get('admin/product/delete/{id}', [ProductController::class, 'delete'])->name('admin.product.delete');
 
 
-    
+
 
 });
 
