@@ -82,14 +82,21 @@ class SubCategoryController extends Controller
 
     public function delete($id) {
 
-        $getCategory = SubCategory::find($id);
-
+        $getCategory = SubCategory::getSingle($id);
         $result = $getCategory->delete();
 
         if ($result) {
-
             return redirect()->route('admin.sub_category.list')->with('message', ' Sub Category Successfully Delete');
         }
+    }
+
+
+    public function get_sub_category(Request $request) {
+        $category_id = $request->id;
+        $get_sub_category = SubCategory::getRecordSubCategory($category_id);
+        $html = '';
+        $html
+
     }
 
 }

@@ -29,8 +29,11 @@
     <script src="{{ asset('assets/dist/js/adminlte.js') }}"></script>
     <script src="{{ asset('assets/plugins/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('assets/dist/js/demo.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/pages/dashboard3.js') }}"></script>
     <script src="{{ '"https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js' }}"></script>
+
+    @yield('script')
+
+
 </body>
 
 </html>

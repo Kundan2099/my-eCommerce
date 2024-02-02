@@ -63,6 +63,7 @@ class ProductController extends Controller
         try {
             $product = Product::find($product_id);
             if (!empty($product)) {
+                $data['getCtategory'] = Category::all();
                 $data['product'] = $product;
                 $data['header_title'] = "Edit Product";
                 return view('admin.product.edit', $data);
