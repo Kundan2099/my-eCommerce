@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\RazorpayController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -83,8 +84,7 @@ Route::group(['middleware' => 'admin'], function() {
     Route::post('admin/product/edit/{id}', [BrandController::class, 'update'])->name('admin.product.update');    
     Route::get('admin/product/delete/{id}', [ProductController::class, 'delete'])->name('admin.product.delete');
 
-
-
-
 });
 
+Route::get('product',[RazorpayController::class,'index']);
+Route::post('razorpay-payment',[RazorpayController::class,'store'])->name('razorpay.payment.store');

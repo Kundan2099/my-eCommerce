@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "maatwebsite/excel": "^3.1",
+        "razorpay/razorpay": "^2.9",
         "stripe/stripe-php": "^13.9"
     },
     "require-dev": {

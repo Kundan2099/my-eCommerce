@@ -95,7 +95,7 @@ class SubCategoryController extends Controller
         $category_id = $request->id;
         $get_sub_category = SubCategory::getRecordSubCategory($category_id);
         $html = '';
-        $html
+        $html = '';
 
     }
 
