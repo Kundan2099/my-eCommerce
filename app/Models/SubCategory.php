@@ -31,9 +31,8 @@ class SubCategory extends Model
         return self::select('sub_categories.*')
             ->join('categories', 'categories.id', '=', 'sub_categories.category_id')
             ->join('users', 'users.id', '=', 'sub_categories.category_id')
-            ->orderBy('sub_categories.status', '=', 0)
-            ->orderBy('sub_categories.category_id', '=', $category_id)
-            ->orderBy('sub_categories.', 'asc')
-            ->paginate();
+            ->where('sub_categories.status', '=', 1)
+            ->where('sub_categories.category_id', '=', $category_id)
+            ->get();
     }
 }

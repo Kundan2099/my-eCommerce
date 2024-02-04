@@ -66,8 +66,7 @@
                                                 <select class="form-control" id="getSubCategory" name="sub_category_id">
                                                     <option value="">Select</option>
                                                     @foreach ($getCtategory as $subcategory)
-                                                        <option value="">
-                                                        </option>
+                                                        <option value=""></option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -249,14 +248,15 @@
         $('body').delegate('#ChangeCategory', 'change', function(e) {
             var id = $(this).val();
             $.ajax({
-                type: "POST"
+                type: "POST",
                 url: "{{ url('admin/get_sub_category') }}",
                 data: {
                     "id": id,
                     "_token": "{{ csrf_token() }}"
                 },
-                dataType: "json"
+                dataType: "json",
                 success: function(data) {
+                    console.log(data);
                     $('#getsubCategory').html(data.html);
                 },
                 error: function(data) {}

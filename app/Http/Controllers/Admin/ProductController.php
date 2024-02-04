@@ -64,6 +64,7 @@ class ProductController extends Controller
             $product = Product::find($product_id);
             if (!empty($product)) {
                 $data['getCtategory'] = Category::all();
+                $data['getCtategory'] = Category::all();
                 $data['product'] = $product;
                 $data['header_title'] = "Edit Product";
                 return view('admin.product.edit', $data);
@@ -78,29 +79,29 @@ class ProductController extends Controller
     }
 
 
-    public function update(Request $request, $id)
-    {
-        $category = Category::find($id);
-        $category->name = $request->input('name');
-        $category->slug = $request->input('slug');
-        $category->status = $request->input('status');
-        $category->meta_title = $request->input('meta_title');
-        $category->meta_description = $request->input('meta_description');
-        $category->meta_keyword = $request->input('meta_keyword');
-        $category->created_by = Auth::user()->name;
-        $category->update();
+    // public function update(Request $request, $id)
+    // {
+    //     $category = Category::find($id);
+    //     $category->name = $request->input('name');
+    //     $category->slug = $request->input('slug');
+    //     $category->status = $request->input('status');
+    //     $category->meta_title = $request->input('meta_title');
+    //     $category->meta_description = $request->input('meta_description');
+    //     $category->meta_keyword = $request->input('meta_keyword');
+    //     $category->created_by = Auth::user()->name;
+    //     $category->update();
 
-        return redirect()->route('admin.product.list')->with('success', "Product Successfully Update");
-    }
+    //     return redirect()->route('admin.product.list')->with('success', "Product Successfully Update");
+    // }
 
-    public function delete($id)
-    {
+    // public function delete($id)
+    // {
 
-        $getCategory = Product::find($id);
-        $result = $getCategory->delete();
+    //     $getCategory = Product::find($id);
+    //     $result = $getCategory->delete();
 
-        if ($result) {
-            return redirect()->route('admin.product.list')->with('message', 'Product Successfully Delete');
-        }
-    }
+    //     if ($result) {
+    //         return redirect()->route('admin.product.list')->with('message', 'Product Successfully Delete');
+    //     }
+    // }
 }

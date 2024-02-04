@@ -11,19 +11,22 @@ use Illuminate\Support\Facades\Validator;
 
 class SubCategoryController extends Controller
 {
-    public function list() {
+    public function list()
+    {
         $getRecord = SubCategory::all();
         $data['header_title'] = "Sub Category";
-        return view('admin.sub_category.list',['getRecord' => $getRecord], $data);
+        return view('admin.sub_category.list', ['getRecord' => $getRecord], $data);
     }
 
-    public function add() {
+    public function add()
+    {
         $category = Category::all();
         $data['header_title'] = "Add Sub Category";
-        return view('admin.sub_category.add',['category' => $category], $data);
+        return view('admin.sub_category.add', ['category' => $category], $data);
     }
 
-    public function insert(Request $request) {
+    public function insert(Request $request)
+    {
 
         $validation = Validator::make($request->all(), [
             'slug' => ['required', 'unique:sub_categories']
@@ -48,17 +51,19 @@ class SubCategoryController extends Controller
     }
 
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $category = Category::all();
         $getCategory = SubCategory::find($id);
         $data['header_title'] = "Edit Sub Category";
-        return view('admin.sub_category.edit', ['getCategory' => $getCategory],['category' => $category], $data);
+        return view('admin.sub_category.edit', ['getCategory' => $getCategory], ['category' => $category], $data);
     }
 
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
 
         $validation = Validator::make($request->all(), [
-            'slug' => ['required', 'unique:sub_categories,slug,'.$id]
+            'slug' => ['required', 'unique:sub_categories,slug,' . $id]
         ]);
 
         if ($validation->fails()) {
@@ -77,10 +82,10 @@ class SubCategoryController extends Controller
         $subcategory->save();
 
         return redirect()->route('admin.sub_category.list')->with('success', "Sub Category Successfully Update");
-
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
 
         $getCategory = SubCategory::getSingle($id);
         $result = $getCategory->delete();
@@ -91,12 +96,16 @@ class SubCategoryController extends Controller
     }
 
 
-    public function get_sub_category(Request $request) {
+    public function get_sub_category(Request $request)
+    {
         $category_id = $request->id;
-        $get_sub_category = SubCategory::getRecordSubCategory($category_id);
+        $get_sub_category = SubCategory::getRecordCategory($category_id);
         $html = '';
-        $html = '';
-
+        $html = '<option value="">Select</option>';
+        foreach ($get_sub_category as  $value) {
+            $html .=  '<option value="' . $value->id . '">' . $value->name . '</option>';
+        }
+        $json['html'] = $html;
+        echo json_encode($json);
     }
-
 }
