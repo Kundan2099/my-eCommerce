@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -83,6 +84,17 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('admin/product/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit');
     Route::post('admin/product/edit/{id}', [BrandController::class, 'update'])->name('admin.product.update');    
     Route::get('admin/product/delete/{id}', [ProductController::class, 'delete'])->name('admin.product.delete');
+
+    Route::prefix('coupon')->controller(CouponController::class)->group(function () {
+        Route::get('/', 'viewCouponList')->name('admin.view.coupon.list');
+        Route::get('/create', 'viewCouponCreate')->name('admin.view.coupon.create');
+        Route::get('/update/{id}', 'viewCouponUpdate')->name('admin.view.coupon.update');
+        Route::post('/create', 'handleCouponCreate')->name('admin.handle.coupon.create');
+        Route::post('/update/{id}', 'handleCouponUpdate')->name('admin.handle.coupon.update');
+        Route::put('/status', 'handleToggleCouponStatus')->name('admin.handle.coupon.status');
+        Route::get('/delete/{id}', 'handleCouponDelete')->name('admin.handle.coupon.delete');
+    });
+
 
 });
 
