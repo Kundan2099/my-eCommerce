@@ -11,7 +11,7 @@ class Product extends Model
 
     protected $table = 'products';
 
-    // static public function getRecord()
+    // static public function products()
     // {
     //     return self::select('products.*', 'users.name as created_by_name')
     //         ->join('users', 'users.id', '=', 'products.created_by')

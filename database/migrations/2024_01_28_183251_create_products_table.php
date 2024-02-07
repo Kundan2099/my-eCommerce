@@ -25,7 +25,8 @@ return new class extends Migration
             $table->text('additional_information')->nullable();
             $table->text('shiping_&_returns')->nullable();
             $table->boolean('status')->default(false);
-            $table->integer('created_by')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('sku')->nullable();
             $table->timestamps();
         });
     }

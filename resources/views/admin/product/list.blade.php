@@ -40,7 +40,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($getRecord as $value)
+                                        @foreach ($products as $value)
                                             <tr>
                                                 <td> {{ $value->id }} </td>
                                                 <td> {{ $value->title }} </td>

@@ -53,7 +53,7 @@
                                                 <label>Category <span style="color: red">*</span></label>
                                                 <select class="form-control" id="ChangeCategory" name="category_id">
                                                     <option value="">Select</option>
-                                                    @foreach ($getCtategory as $category)
+                                                    @foreach ($categorys as $category)
                                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                     @endforeach
                                                 </select>
@@ -65,7 +65,7 @@
                                                 <label>Sub Category <span style="color: red">*</span></label>
                                                 <select class="form-control" id="getSubCategory" name="sub_category_id">
                                                     <option value="">Select</option>
-                                                    @foreach ($getCtategory as $subcategory)
+                                                    @foreach ($categorys as $subcategory)
                                                         <option value=""></option>
                                                     @endforeach
                                                 </select>
@@ -243,7 +243,7 @@
     </div>
 @endsection
 
-@section('script')
+{{-- @section('script')
     <script type="text/javascript">
         $('body').delegate('#ChangeCategory', 'change', function(e) {
             var id = $(this).val();
@@ -263,4 +263,4 @@
             });
         });
     </script>
-@endsection
+@endsection --}}

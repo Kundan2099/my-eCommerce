@@ -16,9 +16,9 @@ class ProductController extends Controller
 {
     public function list()
     {
-        $getRecord = Product::all();
+        $products = Product::all();
         $data['header_title'] = "Product";
-        return view('admin.product.list', ['getRecord' => $getRecord], $data);
+        return view('admin.product.list', ['products' => $products], $data);
     }
 
     public function add()
@@ -29,8 +29,8 @@ class ProductController extends Controller
 
     public function insert(Request $request)
     {
-
         try {
+
             $product = new Product;
             $product->title = $request->input('title');
             $product->created_by = Auth::user()->name;
@@ -49,11 +49,7 @@ class ProductController extends Controller
 
             return redirect('admin/product/edit/' . $product->id);
         } catch (Exception $exception) {
-            return redirect()->back()->with('message', [
-                'status' => 'error',
-                'title' => 'An error occcured',
-                'description' => $exception->getMessage()
-            ]);
+            dd($exception->getMessage());
         }
     }
 
@@ -63,11 +59,11 @@ class ProductController extends Controller
         try {
             $product = Product::find($product_id);
             if (!empty($product)) {
-                $data['getCtategory'] = Category::all();
-                $data['getCtategory'] = Category::all();
+                $categorys = Category::all();
+                
                 $data['product'] = $product;
                 $data['header_title'] = "Edit Product";
-                return view('admin.product.edit', $data);
+                return view('admin.product.edit',['categorys' => $categorys], $data);
             }
         } catch (Exception $exception) {
             return redirect()->back()->with('message', [
