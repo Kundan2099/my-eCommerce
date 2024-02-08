@@ -41,7 +41,7 @@
                                             <div class="form-group">
                                                 <label>SKU <span style="color: red">*</span></label>
                                                 <input type="text" class="form-control" name="sku"
-                                                    value="{{ old('title', $product->sku) }}" placeholder="SKU" required>
+                                                    value="{{ old('sku', $product->sku) }}" placeholder="SKU" required>
                                                 @error('sku')
                                                     <span class="text text-danger">{{ $message }}</span>
                                                 @enderror
@@ -51,7 +51,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Category <span style="color: red">*</span></label>
-                                                <select class="form-control" id="ChangeCategory" name="category_id">
+                                                <select class="form-control" id="getCategory" name="category_id">
                                                     <option value="">Select</option>
                                                     @foreach ($categorys as $category)
                                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -63,11 +63,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Sub Category <span style="color: red">*</span></label>
-                                                <select class="form-control" id="getSubCategory" name="sub_category_id">
+                                                <select class="form-control" id="getsubCategory" name="sub_category_id">
                                                     <option value="">Select</option>
-                                                    @foreach ($categorys as $subcategory)
-                                                        <option value=""></option>
-                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -243,9 +240,9 @@
     </div>
 @endsection
 
-{{-- @section('script')
+@section('script')
     <script type="text/javascript">
-        $('body').delegate('#ChangeCategory', 'change', function(e) {
+        $('body').delegate('#getCategory', 'change', function(e) {
             var id = $(this).val();
             $.ajax({
                 type: "POST",
@@ -263,4 +260,4 @@
             });
         });
     </script>
-@endsection --}}
+@endsection
