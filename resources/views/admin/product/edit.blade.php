@@ -143,35 +143,7 @@
                                                                 </td>
                                                                 <td>
                                                                     <button type="button"
-                                                                        class="btn btn-primary">Add</button>
-                                                                    <button type="button"
-                                                                        class="btn btn-danger">Delete</button>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <input type="text" name=""
-                                                                        class="form-control">
-                                                                </td>
-                                                                <td>
-                                                                    <input type="text" name=""
-                                                                        class="form-control">
-                                                                </td>
-                                                                <td>
-                                                                    <button type="button"
-                                                                        class="btn btn-danger">Delete</button>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    <input type="text" name=""
-                                                                        class="form-control">
-                                                                </td>
-                                                                <td>
-                                                                    <input type="text" name=""
-                                                                        class="form-control">
-                                                                </td>
-                                                                <td>
+                                                                        class="btn btn-primary AddSize">Add</button>
                                                                     <button type="button"
                                                                         class="btn btn-danger">Delete</button>
                                                                 </td>
@@ -242,6 +214,9 @@
 
 @section('script')
     <script type="text/javascript">
+        $('body').delegate('.AddSize', 'click', function() {
+            alert('Hi');
+        });
         $('body').delegate('#getCategory', 'change', function(e) {
             var id = $(this).val();
             $.ajax({
