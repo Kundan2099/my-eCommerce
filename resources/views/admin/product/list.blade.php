@@ -44,6 +44,7 @@
                                             <tr>
                                                 <td> {{ $value->id }} </td>
                                                 <td> {{ $value->title }} </td>
+                                                <td> {{ $value->price }} </td>
                                                 <td> {{ $value->created_by }} </td>
                                                 <td> {{ $value->status == 0 ? 'Active' : 'Inactive' }} </td>
                                                 <td> {{ date('d-m-y', strtotime($value->created_at)) }} </td>

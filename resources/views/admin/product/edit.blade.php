@@ -133,20 +133,34 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td>
-                                                                    <input type="text" name=""
-                                                                        class="form-control">
-                                                                </td>
-                                                                <td>
-                                                                    <input type="text" name=""
-                                                                        class="form-control">
-                                                                </td>
-                                                                <td>
-                                                                    <button type="button"
-                                                                        class="btn btn-primary AddSize">Add</button>
-                                                                    <button type="button"
-                                                                        class="btn btn-danger">Delete</button>
-                                                                </td>
+                                                                <div>
+                                                                    <td>
+                                                                        <input type="text" name=""
+                                                                            class="form-control">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" name=""
+                                                                            class="form-control">
+                                                                    </td>
+                                                                    <td>
+                                                                        <button type="button"
+                                                                            class="btn btn-primary AddSize">Add</button>
+                                                                    </td>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <td>
+                                                                        <input type="text" name=""
+                                                                            class="form-control">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" name=""
+                                                                            class="form-control">
+                                                                    </td>
+                                                                    <td>
+                                                                        <button type="button"
+                                                                            class="btn btn-primary AddSize">Add</button>
+                                                                    </td>
+                                                                </div>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -216,6 +230,7 @@
     <script type="text/javascript">
         $('body').delegate('.AddSize', 'click', function() {
             alert('Hi');
+            var html = '';
         });
         $('body').delegate('#getCategory', 'change', function(e) {
             var id = $(this).val();
