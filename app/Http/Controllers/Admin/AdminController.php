@@ -21,6 +21,7 @@ class AdminController extends Controller
         return view('admin.admin.add', $data);
     }
 
+
     public function insert(Request $request) {
 
         $validation = Validator::make($request->all(), [
@@ -44,6 +45,7 @@ class AdminController extends Controller
 
     }
 
+    
 
     public function edit($id) {
 

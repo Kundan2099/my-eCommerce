@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Alumni\MembershipContoroller;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
@@ -25,9 +26,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('admin', [AuthController::class, 'login_admin'])->name('admin.login');
 Route::post('admin', [AuthController::class, 'auth_admin_login'])->name('auth.admin.login');
@@ -95,6 +93,15 @@ Route::group(['middleware' => 'admin'], function() {
         Route::get('/delete/{id}', 'handleCouponDelete')->name('admin.handle.coupon.delete');
     });
 
+    Route::prefix('membership')->controller(MembershipContoroller::class)->group(function () {
+        Route::get('/', 'viewMembershipList')->name('admin.view.membership.list');
+        Route::get('/create', 'viewMembershipCreate')->name('admin.view.membership.create');
+        Route::get('/update/{id}', 'viewMembershipUpdate')->name('admin.view.membership.update');
+        Route::post('/create', 'handleMembershipCreate')->name('admin.handle.membership.create');
+        Route::post('/update/{id}', 'handleMembershipUpdate')->name('admin.handle.membership.update');
+        Route::put('/status', 'handleToggleMembershipStatus')->name('admin.handle.membership.status');
+        Route::get('/delete/{id}', 'handleMembershipDelete')->name('admin.handle.membership.delete');
+    });
 
 });
 
