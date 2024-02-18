@@ -65,10 +65,9 @@ class CouponController extends Controller
 
         if ($coupon->isEmpty()) {
 
-      
                 return response([
                     'status' => true,
-                    'message' => $message->
+                    'message' => "Coupons successfully check",
                     'data' => $coupon
                 ], 200);
         
@@ -85,25 +84,4 @@ class CouponController extends Controller
 
         return ($response);
     }
-}
-
-      
-return response([
-    'status' => true,
-    'message' => $message->
-    'data' => $coupon
-], 200);
-
-$response = ['valid' => false, 'message' => 'Coupon code not recognised'];
-} elseif (isset($coupon->end_date) && $coupon->end_date < Carbon::now()) {
-$response = ['valid' => false, 'message' => 'Sorry, that coupon has expired.'];
-} elseif (isset($coupon->start_date) && $coupon->start_date > Carbon::now()) {
-$response = ['valid' => false, 'message' => 'Sorry, that coupon is not yet valid.'];
-} elseif (isset($coupon->status) && $coupon->status === 'inactive') {
-$response = ['valid' => false, 'message' => 'Sorry, that coupon is inactive.'];
-} else {
-$response = ['valid' => true, 'message' => 'Coupon applied successfully!.'];
-}
-
-return ($response);
 }
