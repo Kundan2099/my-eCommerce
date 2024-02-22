@@ -10,6 +10,7 @@ use App\Http\Controllers\Alumni\MembershipContoroller;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\RazorpayController;
 use Illuminate\Support\Facades\Route;
@@ -101,6 +102,16 @@ Route::group(['middleware' => 'admin'], function() {
         Route::post('/update/{id}', 'handleMembershipUpdate')->name('admin.handle.membership.update');
         Route::put('/status', 'handleToggleMembershipStatus')->name('admin.handle.membership.status');
         Route::get('/delete/{id}', 'handleMembershipDelete')->name('admin.handle.membership.delete');
+    });
+
+    Route::prefix('service')->controller(ServiceController::class)->group(function () {
+        Route::get('/', 'viewServiceList')->name('admin.view.service.list');
+        Route::get('/create', 'viewServiceCreate')->name('admin.view.service.create');
+        Route::get('/update/{id}', 'viewServiceUpdate')->name('admin.view.service.update');
+        Route::post('/create', 'handleServiceCreate')->name('admin.handle.service.create');
+        Route::post('/update/{id}', 'handleServiceUpdate')->name('admin.handle.service.update');
+        Route::put('/status', 'handleToggleServiceStatus')->name('admin.handle.service.status');
+        Route::get('/delete/{id}', 'handleServiceDelete')->name('admin.handle.service.delete');
     });
 
 });
