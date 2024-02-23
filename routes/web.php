@@ -114,6 +114,16 @@ Route::group(['middleware' => 'admin'], function() {
         Route::get('/delete/{id}', 'handleServiceDelete')->name('admin.handle.service.delete');
     });
 
+    Route::prefix('check')->controller(ServiceController::class)->group(function () {
+        Route::get('/', 'viewCheckList')->name('admin.view.check.list');
+        Route::get('/create', 'viewCheckCreate')->name('admin.view.check.create');
+        Route::get('/update/{id}', 'viewCheckUpdate')->name('admin.view.check.update');
+        Route::post('/create', 'handleCheckCreate')->name('admin.handle.check.create');
+        Route::post('/update/{id}', 'handleCheckUpdate')->name('admin.handle.check.update');
+        Route::put('/status', 'handleToggleCheckStatus')->name('admin.handle.check.status');
+        Route::get('/delete/{id}', 'handleCheckDelete')->name('admin.handle.check.delete');
+    });
+
 });
 
 Route::get('product',[RazorpayController::class,'index']);
