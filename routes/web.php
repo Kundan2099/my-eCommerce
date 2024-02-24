@@ -124,6 +124,16 @@ Route::group(['middleware' => 'admin'], function() {
         Route::get('/delete/{id}', 'handleCheckDelete')->name('admin.handle.check.delete');
     });
 
+    Route::prefix('uplode')->controller(ServiceController::class)->group(function () {
+        Route::get('/', 'viewUplodeList')->name('admin.view.uplode.list');
+        Route::get('/create', 'viewUplodeCreate')->name('admin.view.uplode.create');
+        Route::get('/update/{id}', 'viewUplodeUpdate')->name('admin.view.uplode.update');
+        Route::post('/create', 'handleUplodeCreate')->name('admin.handle.uplode.create');
+        Route::post('/update/{id}', 'handleUplodeUpdate')->name('admin.handle.uplode.update');
+        Route::put('/status', 'handleToggleUplodeStatus')->name('admin.handle.uplode.status');
+        Route::get('/delete/{id}', 'handleUplodeDelete')->name('admin.handle.uplode.delete');
+    });
+
 });
 
 Route::get('product',[RazorpayController::class,'index']);
