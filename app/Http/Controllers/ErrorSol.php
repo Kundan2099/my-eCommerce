@@ -1,13 +1,5 @@
 <?php
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
-class ErrorSol extends Controller
-{
-    <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -58,19 +50,20 @@ class JobPostController extends Controller
     // Method to update the specified job post in the database
     public function update(Request $request, JobPost $jobPost)
     {
-///////////
-////////////
-//////////////////////
-////////////
-//////////////////////
-////////////
-//////////////////////
-////////////
-//////////////////////
-////////////
-//////////////////////
-////////////
-///////////
+        $request->validate([
+            'id' =>'required',
+            'title' => 'required',
+            'description' => 'required',
+            'summary' =>'required',
+            'skills' =>'required',
+            'salary' =>'required',
+            'location' =>'required',
+            'emoloment_type' =>'required',
+            'documents' =>'required',
+            'apply_url' =>'required',
+            'status' =>'required',
+            
+        ]);
 
         $jobPost->update($request->all());
 
@@ -79,5 +72,4 @@ class JobPostController extends Controller
     }
 
     
-}
 }
